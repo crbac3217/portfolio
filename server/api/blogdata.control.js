@@ -10,7 +10,7 @@ export default class blogCtrl{
         if(req.query.name){
             filters.name = req.query.name
         } else if(req.query.tags){
-            filters.tags = [req.query.tags]
+            filters.tags = req.query.tags
         } else if(req.query.type){
             filters.type = req.query.type
         }
@@ -30,4 +30,22 @@ export default class blogCtrl{
         }
         res.json(response)
     }
+    static async apiGetBlogById(req, res, next){
+        try
+    {
+        let id = req.params.id || {}
+        let post = await blogDAO.GetBlogById(id)
+
+        if(!post){
+            res.status(404).json({error:"nothing seems to be here..."})
+            return
+        }
+        console.log(post)
+        res.json(post)
+    }
+    catch(e){
+        console.log({e});
+        res.status(500).json({error:e})
+    }
+}
 }

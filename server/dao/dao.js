@@ -1,5 +1,9 @@
+import mongodb from "mongodb"
+
 let blogdatas;
 let tags;
+
+const ObjectID = mongodb.ObjectId
 
 export default class blogDAO{
     // fetching the correct database and assigning it to the global variable
@@ -28,7 +32,8 @@ export default class blogDAO{
                 query = { $text: { $search: filters["name"]}}
             }else if ("tags" in filters)
             {
-                query = {tags: filters["tags"]}
+                query = {"tags": { $elemMatch: { $eq: ObjectID(filters["tags"]) } }}
+                console.log(filters["tags"])
             }else if ("type" in filters)
             {
                 query = {"type": {$eq: filters["type"]}}
@@ -58,6 +63,20 @@ export default class blogDAO{
             )
             return {blogdataList: [], totalNumPosts: 0}
         }
+    }
+    static async GetBlogById(id)
+    {
+        try{
+            const cursor = await blogdatas.findOne({
+            "_id": ObjectID(id)
+            })
+            return cursor;
+            
+        }catch(e){
+            console.error(e)
+            return null;
+        }
+        
     }
 }
 
