@@ -1,28 +1,28 @@
-import http from "../http-common.js"
+import Http from "../http-common.js"
 
 class getBlogData {
     getAll(page = 0){
-        return http.get(`?page=${page}`)
+        return Http.get(`?page=${page}`)
     }
 
     get(id){
-        return http.get(`/id/${id}`)
+        return Http.get(`/id/${id}`)
     }
 
-    find(type){
-        return http.get(`?type=${type}`)
+    findType(type){
+        return Http.get(`?type=${type}`)
     }
     
     post(data){
-        return http.post("/post", data)
+        return Http.post("/post", data)
     }
     
     edit(data){
-        return http.put("/post", data)
+        return Http.put("/post", data)
     }
 
     delete(id){
-        return http.delete("/post", id)
+        return Http.delete("/post", id)
     }
 }
 
