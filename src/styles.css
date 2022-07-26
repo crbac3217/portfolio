@@ -1,0 +1,24 @@
+* {
+    box-sizing: border-box;
+    outline: none;
+  }
+  
+  #root {
+    width: 100vw;
+    height: 100vh;
+    margin: 0;
+    padding: 0;
+    background-color: cadetblue;
+  }
+  
+  body {
+    font-family: -apple-system, BlinkMacSystemFont, avenir next, avenir, helvetica neue, helvetica, ubuntu, roboto, noto,
+      segoe ui, arial, sans-serif;
+    color: rgb(255, 255, 255);
+    font-size: 14px;
+  }
+  
+  #root:focus {
+    outline: none;
+  }
+  

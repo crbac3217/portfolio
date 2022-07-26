@@ -6,11 +6,11 @@ import Face from '../components/Face.js'
 const MainScreen = () => {
     const ref = useRef();
 return(
-    <div>
+    <div style={{height : "100vh" , width : "100vw"}}>
     <Canvas>
         <Suspense fallback={null}>
-          <Face />
-          <Environment preset="sunset" background />
+            <pointLight position={[0, 10, 10]} intensity = {0.6} />
+            <Face />
         </Suspense>
       </Canvas>
     </div>
