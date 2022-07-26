@@ -1,8 +1,11 @@
+require('file-loader?name= [name].[ext]!./index.html');
 import React from 'react';
 import ReactDOM from 'react-dom/client';
 import App from './App';
 import { BrowserRouter } from 'react-router-dom';
 import './styles.css'
+import { EffectComposer } from '@react-three/postprocessing'
+
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(

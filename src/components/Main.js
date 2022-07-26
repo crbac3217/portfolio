@@ -1,6 +1,5 @@
 import React from 'react';
 import { Routes, Route } from 'react-router-dom';
-import * as THREE from 'three'
 import Blogpost from '../pages/Blogpost.js';
 import Contact from '../pages/Contact.js';
 import Page2D from '../pages/Page2D.js';

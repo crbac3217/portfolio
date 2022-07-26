@@ -1,0 +1,1 @@
+import { EffectComposer } from '@react-three/postprocessing'
