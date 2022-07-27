@@ -7,6 +7,7 @@ import './styles.css'
 import { EffectComposer } from '@react-three/postprocessing'
 
 
+
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <BrowserRouter>

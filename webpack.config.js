@@ -8,6 +8,7 @@ module.exports = {
     output:{
         path: path.join(__dirname, '../dist'),
         filename: 'bundle.[contenthash].js',
+        publicPath: '/'
     },
     devServer: {
         static: './src',
@@ -15,6 +16,7 @@ module.exports = {
         port: 3000,
         hot: true,
         open: true,
+        historyApiFallback: true
     },
     plugins:[
         new CopyWebpackPlugin({

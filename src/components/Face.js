@@ -1,29 +1,68 @@
 import React, { useRef, useEffect, useState } from 'react'
 import { useGLTF, useAnimations } from '@react-three/drei'
-import { useSpring } from '@react-spring/core'
-import { act } from '@react-three/fiber'
-import { LoopOnce } from 'three'
+import { useLoader } from '@react-three/fiber'
+import { LoopOnce, TextureLoader } from 'three'
 import gsap from 'gsap'
-import { func } from 'prop-types'
+import * as THREE from 'three'
 
 let interval;
-let isFront = true;
+let isFront;
 let sceneRef 
 let Sel;
+
+let tabscreenMat;
+let phonescreenMat;
+let phonetexes;
+let tabtexes;
 
 export default function Face({ ...props }) {
   const group = useRef()
   const { nodes, materials, animations } = useGLTF('/Assets/3D/face.gltf')
-  const { mixer, actions, clips, names, ref } = useAnimations(animations, group)
-  const [pos, changePos] = useState([0, 0, 0])
-  const [rot, changeRot] = useState([0, 0 ,0])
-  const [turning, changeTurning] = useState(false)
-  const [baseAnimState, changeBaseAnimsStateTo] = useState()
+  const { mixer, actions, clips, names, ref } = useAnimations(animations, group);
+  
   sceneRef = useRef(null);
+  materials.wireframe.wireframe = true;
+  materials.tabscreen.emissiveIntensity = 0.5;
+  materials.phonescreen.emissiveIntensity = 0.5;
+  materials.wireframe.emissiveIntensity = 0.5;
+  materials.htmlin.emissiveIntensity = 3;
+  materials.TYPOIN.emissiveIntensity = 2;
+
+  tabscreenMat = materials.tabscreen
+  phonescreenMat = materials.phonescreen
+
+  phonetexes = [
+    useLoader(TextureLoader, '/Assets/2D/chainet.png'),
+    useLoader(TextureLoader, '/Assets/2D/vanend.png'),
+    useLoader(TextureLoader, '/Assets/2D/vanstart.png'),
+    useLoader(TextureLoader, '/Assets/2D/tab.png')
+  ]
+  tabtexes = [
+    useLoader(TextureLoader, 'Assets/2D/acceloweb.jpg'),
+    useLoader(TextureLoader, 'Assets/2D/acceloweb2.jpg'),
+    useLoader(TextureLoader, 'Assets/2D/projection.jpg')
+  ]
 
   useEffect(() => {
+    isFront = true;
+    changePhoneScreen()
+    changeTabScreen();
     idleAnim(clips, actions)
   }, []);
+
+  useEffect(() => {
+    console.log(props.selState)
+    if(isFront === false){
+    if(props.selState === '2D')
+    {
+      Moveto2D()
+    }else if (props.selState === '3D'){
+      Moveto3D()
+    }else if(props.selState === 'Game'){
+      MovetoGame()
+    }
+    }
+  },[props.selState])
   return (
     <group ref={group} {...props} dispose={null}>
       <group name="Scene" position = {[0,0,0]} rotation ={[0,0,0]} ref = {sceneRef} onClick = {() => Turn(actions)}>
@@ -301,7 +340,8 @@ function idleAnim(clips, actions){
   }
 }
 function Turn(actions){
-  isFront = false
+  isFront = false;
+  console.log(isFront);
   const val = Math.floor(Math.random() * 4);
   if(val === 1){
     actions.express1.reset();
@@ -338,8 +378,64 @@ function ActualTurn(){
     duration: 1
   })
 }
-function TurnTo2D()
+function Moveto2D()
 {
+  console.log("hmm");
+  gsap.to(sceneRef.current.rotation, {
+    x: 0.2,
+    y:3,
+    z:0.4,
+    duration: 1
+  })
+  gsap.to(sceneRef.current.position, {
+    x:0,
+    y:-0.45,
+    z:1.5,
+    duration: 1
+  })
+  
+}
+function Moveto3D()
+{
+  gsap.to(sceneRef.current.rotation, {
+    x:0.2,
+    y:2.8,
+    z:-0.3,
+    duration: 1
+  })
+  gsap.to(sceneRef.current.position, {
+    x:-0.15,
+    y:-0.45,
+    z:1.5,
+    duration: 1
+  })
+}
+function MovetoGame()
+{
+  gsap.to(sceneRef.current.rotation, {
+    x: 0.5,
+    y:3.3,
+    z:0.1,
+    duration: 1
+  })
+  gsap.to(sceneRef.current.position, {
+    x:0,
+    y:0.45,
+    z:1.5,
+    duration: 1
+  })
+}
+function changePhoneScreen(){
+  var textochangeto = phonetexes[Math.floor(Math.random() * phonetexes.length)];
+  phonescreenMat.map = textochangeto;
+  phonescreenMat.emissiveMap = textochangeto;
+  setTimeout(changePhoneScreen, 1000);
+}
 
+function changeTabScreen(){
+  var textochangeto = tabtexes[Math.floor(Math.random() * tabtexes.length)];
+  tabscreenMat.map = textochangeto;
+  tabscreenMat.emissiveMap = textochangeto;
+  setTimeout(changeTabScreen, 1500);
 }
 useGLTF.preload('/Assets/3D/face.gltf')
