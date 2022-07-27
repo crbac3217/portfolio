@@ -1,11 +1,10 @@
-import React, { useRef, useState, Suspense } from "react";
+import React, { Suspense } from "react";
 import { EffectComposer, DepthOfField, Bloom, Noise, Vignette } from '@react-three/postprocessing'
-import { Canvas } from "@react-three/fiber";
+import { Canvas, useFrame } from "@react-three/fiber";
 import { OrbitControls, Environment} from '@react-three/drei'
 import Face from '../components/Face.js'
 
 const MainScreen = () => {
-    const ref = useRef();
 return(
     <div style={{height : "100vh" , width : "100vw"}}>
     <Canvas>
