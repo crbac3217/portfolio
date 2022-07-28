@@ -30,7 +30,8 @@
   }
   .mainNavAnchor
   {
-    font-size: 2em
+    font-size: 2em;
+    font-family: 'Montserrat', sans-serif;
   }
   
   #root:focus {
@@ -50,5 +51,68 @@
     margin:0 auto;
   }
   .loading{
-    background-color: white;
+    font-family: 'Montserrat', sans-serif;
+    text-align: center;
+  }
+  .annotation {
+    cursor: pointer;
+    outline: none;
+    border-style: solid;
+    border-color: black;
+    border-width: 0.1em;
+    font-size: 8px;
+    font-weight: 300;
+    background: rgba(255, 255, 255, 0.767);
+    color: #000000;
+    padding: 0.5em;
+    border-radius: 2em;
+    letter-spacing: 1px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 5px;
+    font-family: ccmeanwhile, sans-serif;
+    font-weight: 700;
+    font-style: normal;
+  }
+  .center{
+    margin:auto;
+  }
+
+  .blueback{
+    background-color: #4D7C8A;
+  }
+  .brownback{
+    background-color: #BC884E;
+  }
+  .whiteback{
+    background-color: #F6E8EA;
+  }
+  .blackback{
+    background-color: #22181C;
+  }
+  .redback{
+    background-color: #5A0001;
+  }
+
+  .montserrat{
+    font-family: 'Montserrat', sans-serif;
+  }
+  .notosans{
+    font-family: 'Noto Sans', sans-serif;
+  }
+  .notosanskr{
+    font-family: 'Noto Sans KR', sans-serif;
+  }
+  .robotoslab{
+    font-family: 'Roboto Slab', serif;
+  }
+  .greycliff{
+    font-family: greycliff-cf, sans-serif;
+  }
+  .meanwhile{
+    font-family: ccmeanwhile, sans-serif;
+  }
+  .arbotek{
+    font-family: arbotek, sans-serif;
   }

@@ -1,5 +1,5 @@
 import React, { useRef, useEffect, useState } from 'react'
-import { useGLTF, useAnimations } from '@react-three/drei'
+import { useGLTF, useAnimations, Html } from '@react-three/drei'
 import { useLoader } from '@react-three/fiber'
 import { LoopOnce, TextureLoader } from 'three'
 import gsap from 'gsap'
@@ -8,18 +8,21 @@ import * as THREE from 'three'
 let interval;
 let isFront;
 let sceneRef 
-let Sel;
+let clickTextDesc = true;
 
 let tabscreenMat;
 let phonescreenMat;
 let phonetexes;
 let tabtexes;
 
+const defClickText = "Click Me!"
+
 export default function Face({ ...props }) {
-  const group = useRef()
+  const group = useRef();
   const { nodes, materials, animations } = useGLTF('/Assets/3D/face.gltf')
   const { mixer, actions, clips, names, ref } = useAnimations(animations, group);
-  
+  const [clickText, changeClickText, clickRef] = useState("Click Me!")
+
   sceneRef = useRef(null);
   materials.wireframe.wireframe = true;
   materials.tabscreen.emissiveIntensity = 0.5;
@@ -42,7 +45,7 @@ export default function Face({ ...props }) {
     useLoader(TextureLoader, 'Assets/2D/acceloweb2.jpg'),
     useLoader(TextureLoader, 'Assets/2D/projection.jpg')
   ]
-
+  
   useEffect(() => {
     isFront = true;
     changePhoneScreen()
@@ -51,7 +54,6 @@ export default function Face({ ...props }) {
   }, []);
 
   useEffect(() => {
-    console.log(props.selState)
     if(isFront === false){
     if(props.selState === '2D')
     {
@@ -63,6 +65,34 @@ export default function Face({ ...props }) {
     }
     }
   },[props.selState])
+
+  useEffect(() => {
+    if(clickTextDesc){
+      
+      if(clickText.length > 0){
+        setTimeout(() => {
+          changeClickText((prevVal) => prevVal.slice(0,-1))
+        }, 200)
+      }else{
+        clickTextDesc = false;
+        setTimeout(() => {
+          changeClickText((prevVal) => prevVal + defClickText.slice(prevVal.length, prevVal.length+1))
+        }, 2500)
+      }
+    }else{
+      if(clickText.length < defClickText.length){
+        setTimeout(() => {
+          changeClickText((prevVal) => prevVal + defClickText.slice(prevVal.length, prevVal.length+1))
+        }, 200)
+      }else{
+        clickTextDesc = true;
+        setTimeout(() => {
+          changeClickText((prevVal) => prevVal.slice(0,-1))
+        }, 2500)
+     }
+    }
+  }, [clickText])
+
   return (
     <group ref={group} {...props} dispose={null}>
       <group name="Scene" position = {[0,0,0]} rotation ={[0,0,0]} ref = {sceneRef} onClick = {() => Turn(actions)}>
@@ -261,6 +291,11 @@ export default function Face({ ...props }) {
           <skinnedMesh name="EYER" geometry={nodes.EYER.geometry} material={materials['eye.L']} skeleton={nodes.EYER.skeleton} />
           <group name="face003">
             <skinnedMesh name="Roundcube007" geometry={nodes.Roundcube007.geometry} material={materials.facemat} skeleton={nodes.Roundcube007.skeleton} />
+            <Html scale={0.4} rotation={[ 0, 0, 0]} position={[0.7, 0.8, 2]} transform occlude>
+              <div className="annotation">
+              {clickText}
+              </div>
+            </Html>
             <skinnedMesh name="Roundcube007_1" geometry={nodes.Roundcube007_1.geometry} material={materials.facebackmatrev} skeleton={nodes.Roundcube007_1.skeleton} />
           </group>
           <skinnedMesh name="phonebase" geometry={nodes.phonebase.geometry} material={materials.gunmetal} skeleton={nodes.phonebase.skeleton} />
@@ -311,28 +346,24 @@ function idleAnim(clips, actions){
       actions.fly1.setLoop(LoopOnce);
       actions.fly1.play();
       interval = Math.floor(clips[7].duration * 1000)
-      console.log(clips[7].name, interval)
     }else if (val === 2)
     {
       actions.fly2.reset();
       actions.fly2.setLoop(LoopOnce);
       actions.fly2.play();
       interval = Math.floor(clips[8].duration * 1000)
-      console.log(clips[8].name, interval)
     }else if (val === 3)
     {
       actions.sleep.reset();
       actions.sleep.setLoop(LoopOnce);
       actions.sleep.play();
       interval = Math.floor(clips[9].duration * 1000)
-      console.log(clips[9].name, interval)
     }else
     {
       actions.Blink.reset();
       actions.Blink.setLoop(LoopOnce);
       actions.Blink.play();
       interval = Math.floor(clips[2].duration * 1000)
-      console.log(clips[2].name, interval)
     }
     setTimeout(() => {
       idleAnim(clips, actions)
@@ -341,7 +372,6 @@ function idleAnim(clips, actions){
 }
 function Turn(actions){
   isFront = false;
-  console.log(isFront);
   const val = Math.floor(Math.random() * 4);
   if(val === 1){
     actions.express1.reset();
@@ -380,7 +410,6 @@ function ActualTurn(){
 }
 function Moveto2D()
 {
-  console.log("hmm");
   gsap.to(sceneRef.current.rotation, {
     x: 0.2,
     y:3,
@@ -425,6 +454,7 @@ function MovetoGame()
     duration: 1
   })
 }
+
 function changePhoneScreen(){
   var textochangeto = phonetexes[Math.floor(Math.random() * phonetexes.length)];
   phonescreenMat.map = textochangeto;

@@ -33,7 +33,7 @@ return(
         <Vignette eskil={false} offset={0.5} darkness={0.25} />
       </EffectComposer>
       <Html fullscreen>
-      <nav className="navbar-dark bg-dark bg-opacity-75 navbar-expand rounded w-75 mx-auto mainNavbar">
+      <nav className="navbar-dark bg-dark bg-opacity-75 navbar-expand rounded w-50 mx-auto mainNavbar">
         <ul className="navbar-nav mainNavList d-flex justify-content-around">
         
                 <li className="nav-item"><a className = "bg-transparent border-0 text-left lead mainNavAnchor" href="/Contact" onMouseEnter={Hover2D} ><strong>2D</strong></a></li>
@@ -49,10 +49,11 @@ return(
 }
 
 const Fallback = () => {
-    <Html fullscreen>
-    <div className="loading" ><h1>Loading... </h1> </div>
+    return(
+    <Html position={[-0.7, 0.8, 0]}>
+    <div className="loading center"><h1 className="loading">Loading... </h1> </div>
     </Html>
-    
+    )    
 }
 
 export default MainScreen;

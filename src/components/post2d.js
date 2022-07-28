@@ -1,8 +1,7 @@
 import React, {useState, useEffect} from "react";
 import Datacaller from "../services/datacaller.js";
-import { Link } from "react-router-dom";
 
-const List2D = props => {
+const Post2D = props => {
     // const [posts, setPosts] = useState([]);
     // const [searchName, setSearchName] = useState("");
     // const [searchTag, setSearchTag] = useState("");
@@ -13,8 +12,7 @@ const List2D = props => {
     }, []);
 
     function findByType(){
-        Datacaller.findType("3D").then(response => {
-            console.log("at least we doin something")
+        Datacaller.findType("2D").then(response => {
             console.log(response.data);
             setPostThumbnails(response.data.posts)
         }).catch(e => {
@@ -39,4 +37,4 @@ const List2D = props => {
     )
 }
 
-export default List2D;
+export default Post2D;
