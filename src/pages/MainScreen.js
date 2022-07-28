@@ -3,7 +3,6 @@ import { EffectComposer, DepthOfField, Bloom, Noise, Vignette } from '@react-thr
 import { Canvas} from "@react-three/fiber";
 import { Html} from '@react-three/drei'
 import Face from '../components/Face.js'
-import MainNav from '../components/MainNav.js'
 
 const MainScreen = () => {
     const [selectedState, changeSelectedState] = useState('');
@@ -36,9 +35,9 @@ return(
       <nav className="navbar-dark bg-dark bg-opacity-75 navbar-expand rounded w-50 mx-auto mainNavbar">
         <ul className="navbar-nav mainNavList d-flex justify-content-around">
         
-                <li className="nav-item"><a className = "bg-transparent border-0 text-left lead mainNavAnchor" href="/Contact" onMouseEnter={Hover2D} ><strong>2D</strong></a></li>
-                <li className="nav-item"><a className = "bg-transparent border-0 text-left lead mainNavAnchor" href="/Contact" onMouseEnter={Hover3D} ><strong>3D</strong></a></li>
-                <li className="nav-item"><a className = "bg-transparent border-0 text-left lead mainNavAnchor" href="/Contact" onMouseEnter={HoverGame} ><strong>Game</strong></a></li>
+                <li className="nav-item"><a className = "bg-transparent border-0 text-left lead mainNavAnchor" href="/2D" onMouseEnter={Hover2D} ><strong>2D</strong></a></li>
+                <li className="nav-item"><a className = "bg-transparent border-0 text-left lead mainNavAnchor" href="/3D" onMouseEnter={Hover3D} ><strong>3D</strong></a></li>
+                <li className="nav-item"><a className = "bg-transparent border-0 text-left lead mainNavAnchor" href="/Game" onMouseEnter={HoverGame} ><strong>Game</strong></a></li>
             </ul> 
         </nav>     
       </Html>

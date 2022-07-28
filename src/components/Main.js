@@ -12,6 +12,7 @@ const Main = () => {
     <Routes> {/* The Switch decides which component to show based on the current URL.*/}
       <Route path="/" element={ <Mainscreen/> } />
       <Route path="/Contact" element={ <Contact/> } />
+      <Route path="/2D" element = {<Page2D />} />
     </Routes>
   );
 }
