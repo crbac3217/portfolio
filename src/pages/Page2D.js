@@ -7,7 +7,7 @@ import Part12D from '../components/Part12D.js'
 import Part22D from '../components/Part22D.js'
 import Part32D from '../components/Part32D.js'
 
-const Contact = () => {
+const Page2D = () => {
 return(
     <div>
     <HeaderNav />
@@ -23,4 +23,4 @@ return(
 )
 }
 
-export default Contact;
+export default Page2D;

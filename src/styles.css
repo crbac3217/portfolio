@@ -101,6 +101,9 @@
   .redback{
     background-color: #5A0001;
   }
+  .fadeback{
+    background-color: #D3D1A6;
+  }
 
   .montserrat{
     font-family: 'Montserrat', sans-serif;
@@ -116,6 +119,10 @@
   }
   .greycliff{
     font-family: greycliff-cf, sans-serif;
+  }
+  .ibarra
+  {
+    font-family: 'Ibarra Real Nova', serif;
   }
   .meanwhile{
     font-family: ccmeanwhile, sans-serif;
@@ -170,10 +177,27 @@
   .Head2D
   {
     font-size: 50vw;
-    z-index: 2;
+    z-index: 1;
     position: absolute;
     top: 50%;
     transform: translate(25%,-50%);
+    color: #FF7119;
+  }
+  .HeadGame
+  {
+    font-size: 30vw;
+    z-index: 1;
+    position: absolute;
+    top: 50%;
+    transform: translate(5%,-50%);
+    color: #FF7119;
+  }
+  .title3D
+  {
+    font-size: 50vw;
+    position: absolute;
+    top: 50%;
+    transform: translate(-50% ,-50%);
     color: #FF7119;
   }
 
@@ -182,6 +206,12 @@
     top: 50%;
     font-size: 1.2em;
     color: #4D7C8A
+  }
+  .half3D{
+    position:relative;
+    top: 50%;
+    font-size: 1.1em;
+    color: #0d1518
   }
 
   @media only screen and (max-width: 992px){
@@ -192,6 +222,17 @@
       top: 50%;
       font-size: 1.2em;
       color: #4D7C8A;
+      margin-bottom: 50%;
+    }
+  }
+  @media only screen and (max-width: 992px){
+    .half3D{
+      text-align: center;
+      position:relative;
+      height: 100%;
+      top: 50%;
+      font-size: 1.2em;
+      color: #0d1518;
       margin-bottom: 50%;
     }
   }
@@ -227,8 +268,112 @@
     transform: translate(-50%,-50%);
     opacity: 80%;
   }
+  .onTop3D
+  {
+    background-color: #3A3D34;
+    height: 30%;
+    width: 30%;
+    z-index: 2;
+    position: absolute;
+    top: 50%;
+    left: 30%;
+    transform: translate(-50%,-50%);
+    opacity: 80%;
+  }
   .hideof{
     overflow: hidden;
   }
-  
-  
+  .vertCentText{
+    text-align: center;
+    position: relative;
+    top: 50%;
+    -ms-transform: translateY(-50%);
+    -webkit-transform: translateY(-50%);
+   transform: translateY(-50%);
+  }
+  .vertCentTextalignLeft{
+    text-align: left;
+    position: relative;
+    top: 50%;
+    -ms-transform: translateY(-50%);
+    -webkit-transform: translateY(-50%);
+   transform: translateY(-50%);
+  }
+  .square2D
+  {
+    border: solid;
+    border-width: 1px;
+    border-color: white;
+    width: 60%;
+    transform: translate(30%);
+    padding-bottom: 60%;
+  }
+  .vertCentTextAbs
+  {
+    text-align: center;
+    position: absolute;
+    top: 50%;
+    font-size: 1em;
+    -ms-transform: translateY(-50%);
+    -webkit-transform: translateY(-50%);
+   transform: translateY(-50%);
+  }
+  .imginsquare
+  {
+    height: 100%;
+    width: 100%;
+    position: absolute;
+    top:0%;
+  }
+  .thumbContain
+  {
+    display:block;
+    position:relative;
+    height: 33vw;
+    width: 33vw;
+    overflow: hidden;
+  }
+  .imgThumb
+  {
+    min-width: 100%;
+    min-height: 100%;
+    position:absolute;
+    width: 170%;
+    height:auto;
+    z-index: 0;
+  }
+  .thumbTitle
+  {
+    position: absolute;
+    color: #000000;
+    background-color: rgba(255, 255, 255, 0.637);
+    z-index: 1;
+    visibility:hidden;
+  }
+  .shrimpimage
+  {
+    height: 100vh;
+    position: absolute;
+  }
+  .shrimpContainer
+  {
+    height: 100vh;
+  }
+  .imghtfit{
+    max-height: 100vh;
+    width: auto;
+    transform: translateX(-15%);
+  }
+  .imginCol
+  {
+    height: 100vh; 
+    width: auto;
+    object-fit: cover;
+    position: absolute;
+    transform: translateX(-35%);
+  }
+  .imgcon
+  {
+    height: 100vh;
+    position: relative;
+  }

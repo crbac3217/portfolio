@@ -1,38 +1,41 @@
 import React, {useState, useEffect} from "react";
 import Datacaller from "../services/datacaller.js";
+import FileCard from "./fileCard.js";
+import Slider from "react-slick";
+
 
 const Post2D = props => {
-    // const [posts, setPosts] = useState([]);
-    // const [searchName, setSearchName] = useState("");
-    // const [searchTag, setSearchTag] = useState("");
-    // const [searchType, setSearchType] = useState("");
-
     useEffect(() => {
         findByType();
     }, []);
-
     function findByType(){
         Datacaller.findType("2D").then(response => {
-            console.log(response.data);
-            setPostThumbnails(response.data.posts)
+            setPostThumbnails(response.data)
         }).catch(e => {
             console.log(e)
         })
     }
-
-    const setPostThumbnails = () => {
-
+    const [posts, setPosts] = useState([]);
+    const setPostThumbnails = (response) => {
+        console.log(response)
+        setPosts(response.blogdatas); 
     }
+    var settings = {
+        arrows: true,
+        dots: true,
+        infinite: false,
+        speed: 500,
+        slidesToShow: 3,
+        slidesToScroll: 3,
+      };
     return(
-        <div>
-        <h1>
-            hellers
-        </h1>
-        <button
-        className="btn"
-        onMouseDown={findByType}>
-            searcheroonie!
-        </button>
+        <div className="fadeback postsBack" style={{paddingBottom: "25px"}}>
+        <div style={{padding:"25px"}}>
+            <h1 style={{color:"#3A3D34"}} className = "greycliff bold">More on 2D...</h1>
+        </div>
+        <Slider {...settings}>
+        {posts.map((post) => <FileCard key= {post._id} name={post.name} thumb={post.img[0]} />)}
+        </Slider>
         </div>
     )
 }

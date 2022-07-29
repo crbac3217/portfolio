@@ -2,7 +2,7 @@ import blogDAO from "../dao/dao.js";
 
 export default class blogCtrl{
     static async apiGetBlogs(req, res, next){
-        const blogsPerPage = req.query.blogsPerPage ? parseInt(req.query.blogsPerPage, 10) : 5
+        const blogsPerPage = req.query.blogsPerPage ? parseInt(req.query.blogsPerPage, 10) : 15
         const page = req.query.page ? parseInt(req.query.page, 10) : 0
 
         let filters = {}
