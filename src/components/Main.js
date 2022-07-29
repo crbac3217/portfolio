@@ -17,6 +17,7 @@ const Main = () => {
       <Route path="/3D" element = {<Page3D />} />
       <Route path="/Game" element = {<PageGame />} />
       <Route path="/Posts" element = {<Posts />} />
+      <Route path="/getBlogPost" element = {<Blogpost />} />
     </Routes>
   );
 }

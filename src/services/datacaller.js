@@ -1,16 +1,20 @@
 import Http from "../http-common.js"
 
 class getBlogData {
-    getAll(page = 0){
-        return Http.get(`?page=${page}`)
+    getAll(){
+        return Http.get(`getBlogPost`)
     }
 
     get(id){
-        return Http.get(`/id/${id}`)
+        return Http.get(`getBlogPost/id/${id}`)
     }
 
     findType(type){
-        return Http.get(`?type=${type}`)
+        return Http.get(`getBlogPost?type=${type}`)
+    }
+
+    findName(name){
+        return Http.get(`getBlogPost?name=${name}`)
     }
     
     post(data){

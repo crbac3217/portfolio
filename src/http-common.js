@@ -1,7 +1,7 @@
 import axios from "axios";
 
 export default axios.create({
-    baseURL: "http://localhost:5000/api/blogdatas",
+    baseURL: "https://us-west-2.aws.data.mongodb-api.com/app/portfoliobackend-pjayr/endpoint/",
     headers: {
       "Content-type": "application/json"
     }

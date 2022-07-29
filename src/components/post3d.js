@@ -30,11 +30,11 @@ const Post3D = props => {
       };
     return(
         <div className="fadeback postsBack" style={{paddingBottom: "25px"}}>
-        <div style={{padding:"25px"}}>
+        <div style={{padding:"25px", paddingTop:"15vh"}}>
             <h1 style={{color:"#3A3D34"}} className = "greycliff bold">More on 3D...</h1>
         </div>
         <Slider {...settings}>
-        {posts.map((post) => <FileCard key= {post._id} name={post.name} thumb={post.img[0]} />)}
+        {posts.map((post) => <FileCard key= {post._id} name={post.name} thumb={post.img[0]} id={post._id}/>)}
         </Slider>
         </div>
     )
