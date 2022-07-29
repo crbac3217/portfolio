@@ -377,3 +377,41 @@
     height: 100vh;
     position: relative;
   }
+  .posttitlediv{
+    background-color: #3A3D34;
+  }
+  .HeadPost{
+    font-size: 30vw;
+    z-index: 1;
+    position: absolute;
+    top: 50%;
+    line-height: 25vw;
+    transform: translate(5%,-50%);
+    color: #FF7119;
+  }
+
+  .postThumbContain
+  {
+    width: 100%;
+    position: relative;
+    overflow: hidden;
+  }
+  .postImageThumb
+  {
+    position:absolute;
+    height: auto; 
+    width: 100%;
+    object-fit: cover;
+    transform: translateX(-35%);
+  }
+  .my-masonry-grid {
+    display: -webkit-box; /* Not needed if autoprefixing */
+    display: -ms-flexbox; /* Not needed if autoprefixing */
+    display: flex;
+    margin-left: -30px; /* gutter size offset */
+    width: auto;
+  }
+  .my-masonry-grid_column {
+    padding-left: 30px; /* gutter size */
+    background-clip: padding-box;
+  }
